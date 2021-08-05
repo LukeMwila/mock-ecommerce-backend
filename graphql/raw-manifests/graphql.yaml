@@ -1,10 +1,4 @@
 ---
-# Source: graphql/charts/graphql/templates/namespace.yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: ecommerce
----
 # Source: graphql/charts/graphql/templates/service-account.yaml
 apiVersion: v1
 kind: ServiceAccount
