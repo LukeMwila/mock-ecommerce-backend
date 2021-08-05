@@ -1,0 +1,50 @@
+---
+# Source: products/charts/products/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: products-service-account 
+  namespace: ecommerce
+---
+# Source: products/charts/products/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-service
+  namespace: ecommerce
+spec:
+  selector:
+    app: products
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 3004
+    targetPort: 3004
+---
+# Source: products/charts/products/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products
+  namespace: ecommerce
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: products
+      role: api
+  template:
+    metadata:
+      labels:
+        app: products
+        role: api
+    spec:
+      containers:
+      - name: products-container
+        image: lukondefmwila/ecommerce-products:0.1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3004

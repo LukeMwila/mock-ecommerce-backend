@@ -1,9 +1,0 @@
-namespace: ecommerce
-targetCustomizations:
-- name: graphql
-  helm:
-    values:
-      replicas: 3
-  clusterSelector:
-    matchLabels:
-      fleet.cattle.io/cluster: cluster-95f8f95f4182

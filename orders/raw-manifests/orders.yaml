@@ -1,0 +1,50 @@
+---
+# Source: orders/charts/orders/templates/service-account.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: orders-service-account 
+  namespace: ecommerce
+---
+# Source: orders/charts/orders/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-service
+  namespace: ecommerce
+spec:
+  selector:
+    app: orders
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 3003
+    targetPort: 3003
+---
+# Source: orders/charts/orders/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders
+  namespace: ecommerce
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: orders
+      role: api
+  template:
+    metadata:
+      labels:
+        app: orders
+        role: api
+    spec:
+      containers:
+      - name: orders-container
+        image: lukondefmwila/ecommerce-orders:0.1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3003
