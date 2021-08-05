@@ -1,0 +1,9 @@
+apiVersion: v2
+description: A Common Helm Chart for Digital E-Commerce Platform Applications
+keywords:
+- digital-platform
+maintainers:
+- email: lukemwila.tech@gmail.com
+  name: Luke Mwila
+name: digital-platform
+version: 0.1.0

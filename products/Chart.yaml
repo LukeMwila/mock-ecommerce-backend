@@ -1,0 +1,15 @@
+apiVersion: v2
+description: The products microservice helm chart
+keywords:
+  - products
+maintainers:
+  - email: lukemwila.tech@gmail.com
+    name: Luke Mwila
+name: products
+appVersion: "0.1.0"
+version: 0.1.0
+dependencies:
+  - name: digital-platform
+    repository: https://mock-ecommerce-digital-platform-charts.storage.googleapis.com
+    version: 0.1.0
+    alias: products

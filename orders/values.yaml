@@ -1,0 +1,31 @@
+orders:
+  # Namespace object
+  namespace: 
+    enabled: false
+  # Service Account object
+  serviceAccount: 
+    enabled: true
+    name: orders-service-account
+    namespace: ecommerce
+  # Deployment object
+  deployment:
+    enabled: true
+    name: orders
+    namespace: ecommerce
+    replicas: 3
+    appName: orders
+    role: api
+    containerName: orders-container
+    image: lukondefmwila/ecommerce-orders:0.1.0
+    port: 3003
+  # Service object
+  service:
+    enabled: true
+    name: orders-service
+    namespace: ecommerce
+    appName: orders
+    type: ClusterIP
+    servicePort: 3003
+    targetPort: 3003
+  
+  
