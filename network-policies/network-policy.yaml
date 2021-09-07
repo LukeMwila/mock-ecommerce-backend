@@ -1,0 +1,18 @@
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-ecommerce-api-traffic
+  namespace: ecommerce
+spec:
+  podSelector:
+    matchLabels:
+      role: api
+  ingress:
+  -  from:
+     -  namespaceSelector:
+          matchLabels:
+            tier: ecommerceBackend
+        podSelector:
+          matchLabels:
+            role: api
